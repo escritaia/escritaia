@@ -1,0 +1,152 @@
+/* perfil.module.css */
+
+:global(:root) {
+  --bg: #2a2a2a;
+  --header: #0b0b3b;
+  --panel: #303030;
+  --muted: #9b9b9b;
+  --primary: #00d335;
+}
+
+.container {
+  background-color: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: sans-serif;
+  color: #fff;
+  position: relative;
+}
+
+/* Botão “Voltar” */
+.voltar {
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.75rem;
+  background-color: var(--panel);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.voltar:hover {
+  background-color: var(--primary);
+  color: var(--bg);
+}
+
+/* Faixa vermelha no topo do card */
+.cardTopBar {
+  height: 8px;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--primary);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-bottom: -8px;
+}
+
+/* Card de perfil */
+.card {
+  background-color: var(--panel);
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Avatar */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid var(--primary);
+  object-fit: cover;
+}
+
+/* Nome */
+.nome {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+/* Série */
+.serie {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Bio */
+.bio {
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* E-mail */
+.email {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Área de ações */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Botões principais */
+.button {
+  padding: 0.5rem;
+  background-color: var(--primary);
+  color: var(--bg);
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: var(--header);
+}
+
+/* Link secundário */
+.link {
+  color: var(--primary);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  margin-top: 0.5rem;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 420px) {
+  .container {
+    padding: 1.5rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+}

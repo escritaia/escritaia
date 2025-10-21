@@ -1,0 +1,456 @@
+/* styles/editor.module.css */
+
+/* 1. CSS variables */
+:global(:root) {
+  --bg: #2a2a2a;
+  --header: #0a0a0a;
+  --panel: #303030;
+  --muted: #9b9b9b;
+  --primary: #00d335;
+}
+
+/* 2. Global reset & full-height + box-sizing */
+:global(html),
+:global(body),
+:global(#__next) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+  color: #fff;
+  overflow-x: hidden;     /* previne qualquer scroll lateral */
+  box-sizing: border-box; /* importante para evitar cálculos incorretos de largura */
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+  box-sizing: inherit;
+}
+
+/* 3. Local font face (aplicada somente onde necessário) */
+/* Uso nome canônico PressStart2P para evitar confusões entre arquivos */
+@font-face {
+  font-family: 'PressStart2P';
+  src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 4. Base page font (sistema). Remove PressStart2P como fonte global. */
+:global(body) {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 5. Page wrapper */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg);
+}
+
+/* ===== Ajustes principais de layout ===== */
+
+/* Main wrapper: coluna flex com header -> conteúdo -> footer */
+.container {
+  width: 100%;
+  min-height: 100vh;            /* ocupar a viewport inteira */
+  display: flex;
+  flex-direction: column;       /* organiza: header -> editor -> footer */
+  background-color: var(--bg);
+  box-sizing: border-box;
+  padding: 0;                   /* padding controlado localmente onde necessário */
+}
+
+/* Header - full width e sticky */
+.siteHeader {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 72px;
+  background-color: var(--header);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 120;
+}
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hamburger:hover,
+.hamburger:focus {
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--muted);
+  border-radius: 2px;
+  transition: background-color 0.2s, transform 0.3s, opacity 0.2s;
+}
+.hamburger:hover span {
+  background-color: #fff;
+}
+.hamburger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Logo (aplica PressStart2P somente ao título via .logoTitle) */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  user-select: none;
+}
+.logoImg {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.logoTitle {
+  font-family: 'PressStart2P', monospace; /* SOMENTE aqui usamos a fonte pixel */
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.6px;
+}
+
+/* Perfil / avatar */
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+.email {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* botão circular de ação */
+.action-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+  background-color: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.12s;
+}
+.action-circle:hover,
+.action-circle:focus {
+  background-color: var(--primary);
+  transform: translateY(-1px);
+  outline: none;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Side menu (absolute para ficar sobre a página) */
+.menuContent {
+  position: absolute;
+  top: 72px;
+  left: 1rem;
+  width: 220px;
+  background-color: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.18s ease-out forwards;
+  transform-origin: top left;
+  z-index: 200;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: scaleY(0.96) translateY(-6px); }
+  to   { opacity: 1; transform: scaleY(1) translateY(0); }
+}
+.fecharMenu {
+  align-self: flex-end;
+  margin: 0.25rem 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.fecharMenu:hover,
+.fecharMenu:focus {
+  color: #fff;
+  outline: none;
+}
+.menuLink {
+  padding: 0.75rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.15s;
+}
+.menuLink:hover,
+.menuLink:focus {
+  background-color: rgba(255,255,255,0.06);
+  outline: none;
+}
+
+/* Editor box - centraliza vertical e horizontalmente entre header e footer */
+.editorBox {
+  background-color: var(--panel);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+  margin: auto;        /* centraliza na coluna flex (vertical + horizontal) */
+  align-self: center;  /* garante centralização horizontal em navegadores estranhos */
+  box-sizing: border-box;
+}
+
+/* Section title (conteúdo do editor) */
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-align: center;
+  /* usa fonte normal (evita herança da PressStart) */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Labels & inputs */
+.label {
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  background-color: var(--bg);
+  color: #fff;
+  font-size: 1rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+.input:focus,
+.textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0,211,53,0.06);
+  outline: none;
+}
+.textarea {
+  min-height: 250px;
+  resize: vertical;
+  margin-top: 0.5rem;
+}
+
+/* Action button */
+.button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--primary);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.12s;
+}
+.button:hover,
+.button:focus {
+  background-color: color-mix(in srgb, var(--primary) 80%, black 20%);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Result display */
+.resultado {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--panel);
+  border-left: 6px solid var(--primary);
+  border-radius: 6px;
+  color: #fff;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Footer (links não parecem botões e têm espaçamento) */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--header);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  border-top: 1px solid var(--panel);
+  width: 100%;
+}
+.footerLink {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  text-decoration: none;
+  margin: 0;
+  border-radius: 6px;
+  transition: background-color 0.12s, text-decoration 0.12s;
+}
+.footerLink:hover,
+.footerLink:focus {
+  background-color: rgba(255,255,255,0.04);
+  text-decoration: underline;
+  outline: none;
+}
+/* fallback global caso o <Link> não aplique corretamente a classe */
+:global(.footer a) {
+  background: transparent !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 6px !important;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :global(*) {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  .siteHeader {
+    height: 60px;
+    padding: 0 0.75rem;
+  }
+  .hamburger {
+    width: 36px;
+    height: 36px;
+  }
+  .hamburger span {
+    width: 24px;
+  }
+  .logoImg {
+    width: 28px;
+    height: 28px;
+  }
+  .logoTitle {
+    font-size: 1rem;
+  }
+  .editorBox {
+    padding: 1.5rem;
+    max-width: 720px;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .siteHeader {
+    height: 50px;
+  }
+  .hamburger {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+  .hamburger span {
+    height: 2.5px;
+  }
+  .logoImg {
+    width: 24px;
+    height: 24px;
+  }
+  .logoTitle {
+    font-size: 0.875rem;
+  }
+  .editorBox {
+    padding: 1rem;
+    max-width: 100%;
+  }
+  .label {
+    font-size: 0.875rem;
+  }
+  .input,
+  .textarea {
+    font-size: 0.9rem;
+  }
+  .button {
+    padding: 0.5rem 0.75rem;
+  }
+  .menuContent {
+    width: 160px;
+    left: 0.5rem;
+    top: 50px;
+  }
+  .menuLink {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  .resultado {
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .footer {
+    padding: 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* ===== Sugestões rápidas (não obrigatórias) =====
+ - Se você ainda tiver PressStart2P aparecendo fora do logo, procure por outras regras que definam
+   "font-family: 'Press Start 2P'" em outros arquivos e substitua por fontes de sistema.
+ - Se o Next Link não aplicar a classe (dependendo da versão do next), use:
+     <Link href="/sobre"><a className={styles.footerLink}>Sobre</a></Link>
+   ou, em Next 13+, use o prop apropriado / legacyBehavior.
+*/

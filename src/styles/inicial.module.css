@@ -1,0 +1,548 @@
+/* src/styles/inicial.module.css */
+
+/* 1. Reset global via CSS Module */
+
+:global(:root) {
+  --bg: #2a2a2a;
+  --header: #0b0b0b;
+  --panel: #303030;
+  --muted: #9b9b9b;
+  --primary: #00d335;
+}
+
+:global(body) {
+  /* pilha de fontes de sistema — ajuste se preferir outra fonte base */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+  background-color: var(--bg);
+}
+
+/* 1. Reset global e fundo escuro real */
+:global(html),
+:global(body),
+:global(#__next) {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  overflow-x: hidden;     /* previne qualquer scroll lateral */
+  width: 100%;            /* força expandir 100% da viewport */
+}
+
+/* 2. Font faces */
+
+@font-face {
+  font-family: "PressStart2P";
+  src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 3. CSS variables and palette */
+.page {
+  width: 100%;
+  background-color: var(--bg);;
+  background-color: var(--bg);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4. Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 72px;
+  background: var(--header);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  z-index: 40;
+}
+
+/* 5. Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+  gap: 6px;              /* espaçamento entre as barras */
+  width: 40px;           /* largura do container */
+  height: 40px;          /* altura do container */
+  padding: 8px;          /* aumenta a área clicável */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;           /* ocupa toda a largura interna */
+  height: 3px;           
+  background: #cfcfcf;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.3s;
+}
+
+.hamburger:hover span {
+  background: #fff;
+}
+
+/* === (Opcional) animação para transformar hambúrguer em X quando abrir === */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* 6. Logo container */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+  user-select: none;
+}
+.logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
+.logo-title {
+  font-family: "PressStart2P", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: 0.6px;
+}
+
+.heroTitle,
+.presentation h2,
+.presentationAlt h2,
+.presentation h2::after,
+.presentationAlt h2::after {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 7. Avatar/menu button */
+.action-circle {
+  margin-left: auto;
+  margin-right: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.action-circle:hover {
+  background: #2c2c2c;
+}
+
+/* 8. Avatar image */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 9. Profile block */
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.email {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* 10. Side menu (left, slide-in) */
+.menuContent {
+  position: absolute;
+  top: 72px;
+  left: 12px;
+  width: 220px;
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.2s ease-out forwards;
+  transform-origin: top left;
+  z-index: 50;
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scaleY(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+.menuContent .fecharMenu {
+  align-self: flex-end;
+  margin: 0.25rem 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.menuContent .fecharMenu:hover {
+  color: #fff;
+}
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.menuLink:hover {
+  background: rgba(18, 107, 201, 0.2);
+}
+
+/* 11. Login/Create Account buttons */
+.conta,
+.buttonLink {
+  background: #1f1f1f;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #444;
+  transition: background 0.2s, border-color 0.2s;
+}
+.conta:hover,
+.buttonLink:hover {
+  background: #2b2b2b;
+  border-color: #666;
+}
+
+/* 12. Hero section */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Animated document icon with glow */
+.documentIcon {
+  width: 150px;
+  height: 180px;
+  margin: 0 auto;
+  background: url('../imagens/papel.png') center/contain no-repeat;
+  animation: float 4s ease-in-out infinite;
+  position: relative;
+}
+.documentIcon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  background: radial-gradient(circle, rgba(18,107,201,0.5) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(10px);
+  animation: pulse 2s ease-in-out infinite;
+  z-index: -1;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3) translate(-50%, -50%);
+    opacity: 0.3;
+  }
+}
+
+/* 13. Hero text and CTA */
+.heroTitle {
+  font-size: 3rem;
+  color: #fff;
+  margin: 0;
+}
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+.ctaButton {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.ctaButton:hover {
+  background: var(--primary);
+}
+
+/* 14. Presentation sections */
+.presentation,
+.presentationAlt {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  position: relative;
+}
+.presentation h2,
+.presentationAlt h2 {
+  font-size: 2.25rem;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+.presentation h2::after,
+.presentationAlt h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.presentation h2:hover::after,
+.presentationAlt h2:hover::after {
+  width: 100px;
+}
+.presentation p,
+.presentationAlt p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 15. Alternate section styling */
+.presentationAlt {
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+.presentationAlt ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.presentationAlt li {
+  position: relative;
+  padding-left: 2rem;
+  color: var(--muted);
+}
+.presentationAlt li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+.list-highlight {
+  background: radial-gradient(circle at top left, rgba(18,107,201,0.15), transparent 70%);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* 16. Footer */
+.footer {
+  background: var(--header);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  border-top: 1px solid #222;
+}
+.footerLink {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+/* === Responsive: up to 768px === */
+@media (max-width: 768px) {
+  .site-header {
+    height: 60px;
+    padding: 0 0.5rem;
+  }
+  .hamburger {
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+  }
+  .hamburger span {
+    width: 24px;
+  }
+  .logo-img {
+    width: 28px;
+    height: 28px;
+  }
+  .logo-title {
+    font-size: 1rem;
+  }
+  .menuContent {
+    width: 180px;
+    top: 60px;
+    left: 8px;
+  }
+  .menuLink {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  .hero {
+    height: 80vh;
+  }
+  .documentIcon {
+    width: 120px;
+    height: 140px;
+  }
+  .heroTitle {
+    font-size: 2rem;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  .ctaButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  .presentation,
+  .presentationAlt {
+    padding: 3rem 0.75rem;
+  }
+  .presentation h2,
+  .presentationAlt h2 {
+    font-size: 1.75rem;
+  }
+  .presentation p,
+  .presentationAlt p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .presentationAlt ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === Responsive: up to 480px === */
+@media (max-width: 480px) {
+  .site-header {
+    height: 50px;
+  }
+  .hamburger {
+    width: 36px;
+    height: 36px;
+  }
+  .logo-img {
+    width: 24px;
+    height: 24px;
+  }
+  .logo-title {
+    font-size: 0.875rem;
+  }
+  .menuContent {
+    width: 160px;
+    padding: 0.25rem 0;
+  }
+  .hero {
+    height: 70vh;
+  }
+  .documentIcon {
+    width: 100px;
+    height: 120px;
+  }
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+  .heroSubtitle {
+    font-size: 0.875rem;
+  }
+  .ctaButton {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  .presentation,
+  .presentationAlt {
+    padding: 2rem 0.5rem;
+  }
+  .presentationAlt ul {
+    grid-template-columns: 1fr;
+  }
+  .footer {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}

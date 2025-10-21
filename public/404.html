@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Erro 404 - Página não encontrada</title>
+    <style>
+      :root {
+        --bg: #2a2a2a;
+        --header: #0b0b0b;
+        --panel: #303030;
+        --muted: #9b9b9b;
+        --primary: #00d335;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg);
+        color: #fff;
+        font-family: 'PressStart2P', monospace;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .box {
+        background-color: var(--panel);
+        padding: 2rem;
+        border-radius: 8px;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+      }
+
+      a {
+        display: inline-block;
+        padding: 0.75rem 1.25rem;
+        background-color: var(--primary);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background-color 0.2s;
+      }
+
+      a:hover {
+        background-color: #00e843;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>404 - Página não encontrada</h1>
+      <p>O endereço que você tentou acessar não existe ou foi removido.</p>
+      <a href="/inicial">Voltar para o início</a>
+    </div>
+  </body>
+</html>
+

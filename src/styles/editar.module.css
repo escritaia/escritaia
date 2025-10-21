@@ -1,0 +1,126 @@
+/* editar.module.css */
+
+/* 0. Reset global para evitar margens brancas */
+:global(html),
+:global(body),
+:global(#__next) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* 1. Tema herdado de :root */
+:global(:root) {
+  --bg: #2a2a2a;
+  --header: #0b0b0b;
+  --panel: #303030;
+  --muted: #9b9b9b;
+  --primary: #00d335;
+}
+
+/* 2. Container principal */
+.container {
+  min-height: 100vh;
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* 3. Caixa do formulário */
+.formBox {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--panel);
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
+
+/* 4. Título */
+.title {
+  font-family: 'PressStart2P', monospace;
+  font-size: 1.5rem;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* 5. Avatar */
+.avatarPreview {
+  display: block;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+}
+
+/* 6. Inputs e textarea */
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--muted);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--primary);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* 7. Botão salvar */
+.button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #00e843;
+}
+
+/* 8. Link voltar */
+.voltar {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.voltar:hover {
+  color: #00e843;
+}
