@@ -267,4 +267,12 @@ a {
   border-radius: 6px !important;
 }
 
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :global(*) {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* End of globals.css */
