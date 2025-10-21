@@ -1,13 +1,3 @@
-/* perfil.module.css */
-
-:global(:root) {
-  --bg: #2a2a2a;
-  --header: #0b0b3b;
-  --panel: #303030;
-  --muted: #9b9b9b;
-  --primary: #00d335;
-}
-
 .container {
   background-color: var(--bg);
   min-height: 100vh;
@@ -59,16 +49,20 @@
   width: 100%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Avatar */
+/* Avatar - agora centralizado */
 .avatar {
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0; /* centraliza horizontalmente quando display:block; aqui usamos flexbox no .card */
   border: 3px solid var(--primary);
   object-fit: cover;
+  display: block;
 }
 
 /* Nome */
@@ -105,6 +99,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
+  align-items: center;
 }
 
 /* Botões principais */
@@ -118,6 +114,8 @@
   text-decoration: none;
   text-align: center;
   transition: background-color 0.2s;
+  width: 100%;
+  max-width: 240px;
 }
 
 .button:hover {

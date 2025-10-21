@@ -1,24 +1,3 @@
-/* editar.module.css */
-
-/* 0. Reset global para evitar margens brancas */
-:global(html),
-:global(body),
-:global(#__next) {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
-
-/* 1. Tema herdado de :root */
-:global(:root) {
-  --bg: #2a2a2a;
-  --header: #0b0b0b;
-  --panel: #303030;
-  --muted: #9b9b9b;
-  --primary: #00d335;
-}
 
 /* 2. Container principal */
 .container {

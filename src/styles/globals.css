@@ -1,0 +1,261 @@
+/* src/styles/globals.css - regras globais, variáveis, fontes e responsividade */
+
+/* Variáveis */
+:root {
+  --bg: #2a2a2a;
+  --header: #0b0b0b;
+  --panel: #303030;
+  --muted: #9b9b9b;
+  --primary: #00d335;
+
+  /* Tipografia */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "PressStart2P", monospace;
+
+  /* Sizing */
+  --max-content-width: 1100px;
+  --page-padding-desktop: 2rem;
+  --page-padding-mobile: 1rem;
+  --header-height-desktop: 72px;
+  --header-height-mobile: 60px;
+  --radius: 10px;
+}
+
+/* Reset global básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: var(--bg);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Font face (usa caminho absoluto para produção) */
+@font-face {
+  font-family: "PressStart2P";
+  src: url("/fonts/PressStart2P-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Imagens, links e mídia */
+img, picture, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Layout base */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--page-padding-desktop);
+}
+
+/* Header global (use .site-header nas páginas) */
+.site-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--header-height-desktop);
+  background: var(--header);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  z-index: 60;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Utilities para componentes comuns */
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  color: #fff;
+}
+.panel {
+  background: var(--panel);
+  border-radius: 8px;
+}
+
+/* Botões primários e secundários */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--primary);
+  color: #fff;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.45); }
+.btn.ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid rgba(0,211,53,0.12);
+}
+
+/* Forms */
+.input, .textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+  outline: none;
+  transition: box-shadow .12s ease, border-color .12s ease;
+}
+.input:focus, .textarea:focus {
+  border-color: rgba(0,211,53,0.9);
+  box-shadow: 0 6px 18px rgba(0,211,53,0.06);
+}
+.textarea { min-height: 160px; resize: vertical; }
+
+/* Avatar padrão centralizado e responsivo */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  display: block;
+  margin: 0 auto;
+}
+
+/* Centro visual para cards compactos */
+.card-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Tipografia responsiva */
+.h1 { font-size: clamp(1.6rem, 2.4vw, 2.6rem); margin: 0 0 .6rem; }
+.h2 { font-size: clamp(1.25rem, 1.9vw, 1.75rem); margin: 0 0 .5rem; }
+.lead { color: var(--muted); font-size: 1rem; }
+
+/* Footer simples */
+.site-footer {
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--muted);
+  background: transparent;
+}
+
+/* Reduced motion (global, aplicado no globals.css) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+/* ========================= */
+/* Mobile-first adjustments */
+/* ========================= */
+
+/* Ajustes base para telas pequenas */
+@media (max-width: 820px) {
+  :root {
+    --page-padding-desktop: 1rem;
+    --header-height-desktop: 64px;
+    --max-content-width: 920px;
+  }
+
+  .site-header {
+    height: var(--header-height-desktop);
+    padding: 0 .75rem;
+  }
+
+  .container {
+    padding: var(--page-padding-desktop);
+  }
+
+  .card { padding: 1rem; }
+  .avatar { width: 88px; height: 88px; border-width: 2px; }
+  .btn { padding: 0.5rem .9rem; border-radius: 10px; }
+  .h1 { font-size: 1.6rem; }
+  .h2 { font-size: 1.25rem; }
+}
+
+/* Ajustes para celulares estreitos */
+@media (max-width: 420px) {
+  :root {
+    --page-padding-desktop: 0.75rem;
+    --header-height-desktop: 56px;
+  }
+
+  html, body { font-size: 15px; }
+
+  .site-header {
+    height: var(--header-height-desktop);
+    padding: 0 .6rem;
+  }
+
+  .container { padding: var(--page-padding-desktop); }
+
+  .card { padding: .9rem; border-radius: 8px; }
+  .avatar { width: 72px; height: 72px; border-width: 2px; }
+  .h1 { font-size: 1.4rem; }
+  .h2 { font-size: 1.05rem; }
+  .btn { width: 100%; justify-content: center; padding: .65rem; }
+  .input, .textarea { font-size: .95rem; padding: .6rem; border-radius: 8px; }
+}
+
+/* Pequenas melhorias para touch targets */
+@media (hover: none) and (pointer: coarse) {
+  .btn { min-height: 44px; }
+  .input, .textarea { min-height: 44px; }
+}
+
+/* Ajuste para barras fixas, safe area em iOS */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+.site-header { padding-top: calc(var(--safe-top)); }
+.container { padding-bottom: calc(var(--safe-bottom) + var(--page-padding-desktop)); }
+
+/* Helpers úteis */
+.grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* End of globals.css */

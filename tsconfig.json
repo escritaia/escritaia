@@ -38,7 +38,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/types/global.d.ts"
-, "src/pages/api/session.jss.js"  ],
+, "src/pages/api/session.jss.js", "next.config.js"  ],
   "exclude": [
     "node_modules"
   ]
