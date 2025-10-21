@@ -310,14 +310,6 @@
   text-decoration: underline;
   outline: none;
 }
-/* fallback global caso o <Link> não aplique corretamente a classe */
-:global(.footer a) {
-  background: transparent !important;
-  color: #fff !important;
-  text-decoration: none !important;
-  padding: 0.25rem 0.5rem !important;
-  border-radius: 6px !important;
-}
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
