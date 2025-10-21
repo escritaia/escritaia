@@ -258,4 +258,13 @@ a {
 .grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
 @media (min-width: 820px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 
+/* fallback global caso o <Link> não aplique corretamente a classe */
+:global(.footer a) {
+  background: transparent !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 6px !important;
+}
+
 /* End of globals.css */
