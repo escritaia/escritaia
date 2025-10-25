@@ -64,39 +64,6 @@ Depois das 5 competências:
 - **Versão reescrita da redação (texto completo):** entregue o texto refeito no padrão ENEM (sem marcações).  
 - **Observações finais (2–4 linhas):** comentários sobre estilo, tom e adequação social.
 
-ESQUEMA JSON (VERSÃO MÁQUINA) — obrigatória e válida JSON
-Retorne um objeto JSON contendo as chaves abaixo. Exemplo de esquema (preencha com conteúdo real):
-
-{
-  "metadata": {
-    "word_count": 123,
-    "paragraph_count": 4,
-    "is_dissertative": true,
-    "has_explicit_thesis": false
-  },
-  "competences": {
-    "C1": {
-      "level": 3,
-      "points": 120,
-      "justification": "texto ...",
-      "citations": ["trecho curto 1", "trecho curto 2"],
-      "errors": ["concordância verbal", "acentuação"],
-      "corrections": [
-        {"original": "frase original", "suggested": "frase sugerida"}
-      ],
-      "tips": ["tip1","tip2","tip3"]
-    },
-    "C2": { /* ...mesma estrutura... */ },
-    "C3": { /* ... */ },
-    "C4": { /* ... */ },
-    "C5": { /* ... */ }
-  },
-  "total_points": 680,
-  "summary": "Resumo geral 3-5 linhas",
-  "priorities": ["1. ...","2. ...","3. ..."],
-  "rewritten_essay": "Texto reformulado completo aqui"
-}
-
 REGRAS DE REDAÇÃO DA CORREÇÃO
 - Ao indicar nível, sempre explique por que o nível foi atribuído com referência clara ao texto.  
 - As "correções sugeridas" devem ser **alternativas concretas** (reescritas), não instruções vagas.  
@@ -132,11 +99,6 @@ ENTREGA FINAL
 - Em seguida, apresente a VERSÃO JSON (formatada).  
 - Termine com a redação REESCRITA (pura, sem marcações).
 - Não inclua comentários sobre o processo de correção (ex.: “eu usei tal método”); apenas entregue a correção e a reescrita.
-
-TEMA: ${tema}
-
-REDAÇÃO ORIGINAL:  
-${redacao}
 
 FIM DO PROMPT.
 `
