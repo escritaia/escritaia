@@ -96,7 +96,6 @@ EXEMPLO DE SAÍDA (resumido — como deve parecer)
 
 ENTREGA FINAL
 - Forneça **primeiro** a VERSÃO HUMANA completa (legível).  
-- Em seguida, apresente a VERSÃO JSON (formatada).  
 - Termine com a redação REESCRITA (pura, sem marcações).
 - Não inclua comentários sobre o processo de correção (ex.: “eu usei tal método”); apenas entregue a correção e a reescrita.
 
