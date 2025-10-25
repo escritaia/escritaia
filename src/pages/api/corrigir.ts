@@ -7,162 +7,138 @@ export const config = {
 // Gera o prompt base para correção
 const gerarPrompt = (tema: string, redacao?: string, imagem?: boolean): string => {
   const base = `
-Correção Completa e Detalhada de Redação no Estilo ENEM
+CORREÇÃO COMPLETA E DETALHADA — PADRÃO ENEM (TEMPLATE AVANÇADO)
 
-A seguir está uma redação escrita com base no tema proposto. Você deve atuar como um AVALIADOR OFICIAL DO ENEM, aplicando os critérios das cinco competências com máxima precisão e rigor técnico.  
-Siga estritamente os parâmetros e instruções abaixo antes de iniciar a avaliação.
+INSTRUÇÕES GERAIS (OBRIGATÓRIO)
+Você deve atuar como CORRETOR(A) OFICIAL DO ENEM (INEP). Avalie a redação recebida com rigor técnico, imparcialidade e estrita observância das cinco competências oficiais. Use o português culto e normas gramaticais vigentes. NÃO traga fontes externas; baseie-se exclusivamente no texto enviado.
 
----
+ENTREGA (OBRIGATÓRIO)
+1) Produza duas saídas no mesmo retorno:
+   A) **Versão humana** (legível) seguindo o formato detalhado abaixo.
+   B) **Versão JSON** com estrutura definida (ver "ESQUEMA JSON" adiante).
+2) Além da avaliação, entregue **uma redação reescrita** (texto inteiro) no estilo ENEM, respeitando:
+   - Introdução com tese explícita (1–2 frases claras);
+   - 2–3 parágrafos de desenvolvimento (argumento + repertório/exemplo + ligação à tese);
+   - Conclusão com proposta de intervenção completa (agente, ação, meio, finalidade, viabilidade) e respeito aos direitos humanos.
+3) Todas as citações diretas do texto original usadas na justificativa devem ter **no máximo 25 palavras** cada. Se for necessário mostrar trecho maior, parafraseie.
 
-🧭 OBJETIVO:
-Realizar uma correção completa e fundamentada, atribuindo notas de 0 a 200 para cada competência, justificando-as com base em trechos do texto, identificando erros e apresentando sugestões de melhoria com exemplos.
+CHECKLIST INICIAL (faça e mostre ✔/✖)
+- [ ] Contagem de palavras do texto original (incluir número).
+- [ ] Número de parágrafos.
+- [ ] Texto é dissertativo-argumentativo? (sim/não)
+- [ ] Texto tem tese explícita? (sim/não)
 
----
+MECÂNICA DE PONTUAÇÃO (NÍVEIS)
+- Nível 0 — 0 pontos
+- Nível 1 — 40 pontos
+- Nível 2 — 80 pontos
+- Nível 3 — 120 pontos
+- Nível 4 — 160 pontos
+- Nível 5 — 200 pontos
+**Observação:** Competência 2 não tem Nível 0 (aplicar níveis 1–5 apenas).
 
-📘 INSTRUÇÕES GERAIS:
+PARÂMETROS DE AVALIAÇÃO (O QUE AVALIAR)
+- Competência 1 — Dominio da norma padrão: ortografia, acentuação, pontuação, concordância, regência, formalidade.
+- Competência 2 — Compreensão da proposta e desenvolvimento do tema: tese, progressão temática, repertório relevante. (Sem Nível 0.)
+- Competência 3 — Seleção e organização dos argumentos: relevância, profundidade, encadeamento, repertório.
+- Competência 4 — Coesão textual e mecanismos linguísticos: conectivos, retomadas pronominais, transições, repetição.
+- Competência 5 — Proposta de intervenção e direitos humanos: agente, ação, meio, finalidade, viabilidade, respeito aos direitos humanos.
 
-1. Analise a redação de forma imparcial, técnica e objetiva, como um corretor treinado pelo INEP.  
-2. Use o português formal e linguagem acadêmica.  
-3. Cada competência deve conter:
-   - **Nota numérica (0 a 200)**
-   - **Justificativa técnica**, com exemplos retirados do texto.
-   - **Principais erros**, identificando o tipo de falha (ortografia, argumentação, estrutura, coesão, proposta, etc.).
-   - **Correções sugeridas**, reescrevendo uma ou duas frases de exemplo.
-   - **Dicas de melhoria** (de 2 a 4 por competência), diretas e específicas.
-4. Ao final, **apresente a nota total (0 a 1000)** e um **resumo final de 3 prioridades de revisão** (por exemplo: “1. Corrigir vícios de concordância; 2. Reforçar argumentos; 3. Detalhar proposta de intervenção”).
+FORMATO EXATO DA SAÍDA (VERSÃO HUMANA)
+Para cada competência, entregue:
 
----
+**Competência X — [Título]**  
+- Nível: N (Nível X) — Pontos: YY / 200  
+- Nota: YY / 200  *(repetir para legibilidade)*  
+- Justificativa técnica: (2–4 frases; inclua **até 2 citações curtas** do texto original, cada citação <= 25 palavras)  
+- Principais erros: (lista objetiva, 2–6 itens; classificar por tipo: ortografia/gramática, argumentação, estrutura, coesão, proposta, repertório)  
+- Correções sugeridas: (1–2 frases reescritas que melhorem o trecho; mostrar a frase original e a reescrita)  
+- Dicas específicas e práticas: (3–4 bullets, ações concretas que o autor pode aplicar)
 
-📊 MODELO DE FORMATAÇÃO ESPERADA:
+Repita para as 5 competências.
 
-**Competência X — [Título da competência]**
-- Nota: XX / 200  
-- Justificativa: [análise textual com citações curtas]  
-- Principais erros: [lista objetiva de falhas]  
-- Correções sugeridas: [1–2 reescritas modelo]  
-- Dicas específicas: [3 bullets de orientação prática]
+Depois das 5 competências:
+- **Nota total:** ZZZZ / 1000  
+- **Resumo geral (3–5 linhas):** análise concisa do desempenho global (forças + fraquezas principais).  
+- **Resumo de prioridades (3 principais pontos numerados 1–3):** ações para revisão priorizada.  
+- **Versão reescrita da redação (texto completo):** entregue o texto refeito no padrão ENEM (sem marcações).  
+- **Observações finais (2–4 linhas):** comentários sobre estilo, tom e adequação social.
 
-(repita o mesmo formato para as 5 competências)
+ESQUEMA JSON (VERSÃO MÁQUINA) — obrigatória e válida JSON
+Retorne um objeto JSON contendo as chaves abaixo. Exemplo de esquema (preencha com conteúdo real):
 
-**Nota total: XXXX / 1000**
+{
+  "metadata": {
+    "word_count": 123,
+    "paragraph_count": 4,
+    "is_dissertative": true,
+    "has_explicit_thesis": false
+  },
+  "competences": {
+    "C1": {
+      "level": 3,
+      "points": 120,
+      "justification": "texto ...",
+      "citations": ["trecho curto 1", "trecho curto 2"],
+      "errors": ["concordância verbal", "acentuação"],
+      "corrections": [
+        {"original": "frase original", "suggested": "frase sugerida"}
+      ],
+      "tips": ["tip1","tip2","tip3"]
+    },
+    "C2": { /* ...mesma estrutura... */ },
+    "C3": { /* ... */ },
+    "C4": { /* ... */ },
+    "C5": { /* ... */ }
+  },
+  "total_points": 680,
+  "summary": "Resumo geral 3-5 linhas",
+  "priorities": ["1. ...","2. ...","3. ..."],
+  "rewritten_essay": "Texto reformulado completo aqui"
+}
 
-**Resumo de prioridades (3 principais pontos de revisão):**
-1. ...
-2. ...
-3. ...
+REGRAS DE REDAÇÃO DA CORREÇÃO
+- Ao indicar nível, sempre explique por que o nível foi atribuído com referência clara ao texto.  
+- As "correções sugeridas" devem ser **alternativas concretas** (reescritas), não instruções vagas.  
+- Não use jargões técnicos sem explicar.  
+- Limite citações diretas a 2 por competência (cada citação <= 25 palavras).  
+- Nunca invente dados, eventos ou autores como repertório — use apenas o que estiver no texto ou repertório genérico (ex.: "dados estatísticos recentes" só se citado no texto).
 
----
+EXIGÊNCIAS ADICIONAIS (QA)
+- Marque claramente onde encontra problemas de originalidade ou plágio (se houverem indícios, indique frases que parecem copiadas).
+- Informe se o texto possui ofensas, discriminação ou violação de direitos humanos (se sim, emitir alerta e atribuir nota 0 em Competência 5).
+- Indique tempo estimado de leitura do texto (aprox.): (palavras/200 = minutos) — apenas estimativa.
 
-📑 GUIA DETALHADO DE AVALIAÇÃO DAS COMPETÊNCIAS:
+MAPA RÁPIDO DE APLICAÇÃO DOS NÍVEIS (EXEMPLOS)
+- Nível 5 (200 pts): texto praticamente sem desvios; tese clara; argumentos desenvolvidos; proposta completa e viável.  
+- Nível 4 (160 pts): pequenos deslizes; estrutura adequada; proposta com poucos detalhes faltantes.  
+- Nível 3 (120 pts): compreensão adequada; falhas significativas de desenvolvimento/clareza.  
+- Nível 2 (80 pts): argumentação pobre ou repetitiva; coesão fraca.  
+- Nível 1 (40 pts): fuga parcial ao tema; erros graves na norma culta ou proposta ausente/inviável.  
+- Nível 0 (0 pts): incoerência total, texto ilegível ou inexistente (não aplicável a C2).
 
-### 🧩 Competência 1 — Domínio da norma padrão da língua portuguesa
-Avalie se o texto demonstra domínio da escrita formal, observando:
-- Ortografia, acentuação e pontuação corretas;
-- Concordância verbal e nominal;
-- Regência verbal e nominal;
-- Emprego de pronomes, tempos verbais e coesão sintática;
-- Ausência de coloquialismos e abreviações.
+OBS: Competência 2 → não atribuir Nível 0; comece em Nível 1 se houver problemas graves.
 
-**Critérios de nota (referência oficial):**
-- 0–50: erros graves e sistemáticos, comprometendo a compreensão.
-- 51–100: erros frequentes que dificultam o entendimento.
-- 101–150: alguns deslizes, mas compreensão preservada.
-- 151–200: poucos ou nenhum erro, excelente domínio da norma culta.
+EXEMPLO DE SAÍDA (resumido — como deve parecer)
+**Competência 1 — Domínio da norma padrão**  
+- Nível: 3 (120 pts) — Nota: 120 / 200  
+- Justificativa: "Há deslizes de regência e pontuação; ex.: 'as pessoa é' (citação curta)."  
+- Principais erros: concordância verbal (2 exemplos), vírgula mal colocada.  
+- Correções sugeridas: Original: "As pessoa é..." → Sugerido: "As pessoas são..."  
+- Dicas: 1) revisar concordância sujeito-verbo; 2) praticar leitura em voz alta; 3) revisar regras de regência verbal.
 
-**Exemplo de justificativa esperada:**
-> “Há falhas recorrentes de acentuação (‘pais’ em vez de ‘país’) e concordância (‘as pessoa é’). Tais desvios comprometem a clareza em alguns trechos, justificando nota intermediária.”
+ENTREGA FINAL
+- Forneça **primeiro** a VERSÃO HUMANA completa (legível).  
+- Em seguida, apresente a VERSÃO JSON (formatada).  
+- Termine com a redação REESCRITA (pura, sem marcações).
+- Não inclua comentários sobre o processo de correção (ex.: “eu usei tal método”); apenas entregue a correção e a reescrita.
 
----
+TEMA: ${tema}
 
-### 🧠 Competência 2 — Compreensão da proposta e desenvolvimento do tema
-Avalie se o texto:
-- Atende integralmente ao tema proposto;
-- Estrutura-se em texto dissertativo-argumentativo;
-- Apresenta **tese explícita** e **progressão lógica** (introdução, desenvolvimento e conclusão);
-- Demonstra repertório sociocultural relevante e produtivo;
-- Evita fuga total ou tangencial ao tema.
+REDAÇÃO ORIGINAL:  
+${redacao}
 
-**Critérios de nota:**
-- 0–50: fuga total do tema ou ausência de estrutura.
-- 51–100: abordagem parcial, estrutura precária.
-- 101–150: adequação com falhas de argumentação ou estrutura.
-- 151–200: texto bem estruturado e plenamente adequado ao tema.
-
-**Exemplo de justificativa esperada:**
-> “O texto apresenta tese implícita, o que reduz a clareza da argumentação. Apesar disso, há relação com o tema e tentativa de conclusão coerente.”
-
----
-
-### ⚖️ Competência 3 — Seleção e organização dos argumentos
-Avalie:
-- Relevância e consistência dos argumentos;
-- Capacidade de relacionar causas, consequências e soluções;
-- Uso produtivo de repertório (dados, fatos, citações, exemplos, alusões);
-- Coerência e encadeamento lógico das ideias.
-
-**Critérios de nota:**
-- 0–50: ausência de argumentação ou contradições graves.
-- 51–100: argumentação fraca, simplista ou repetitiva.
-- 101–150: bons argumentos, porém pouco desenvolvidos.
-- 151–200: argumentos bem selecionados, consistentes e variados.
-
-**Exemplo de justificativa esperada:**
-> “O autor cita a exclusão digital, mas não aprofunda causas ou consequências. O argumento é válido, porém superficial.”
-
----
-
-### 🔗 Competência 4 — Coesão textual e mecanismos linguísticos
-Analise o uso de:
-- Conectivos e operadores argumentativos (“portanto”, “assim”, “por outro lado”, etc.);
-- Referências e retomadas pronominais claras;
-- Organização dos parágrafos e transições suaves;
-- Evite repetições desnecessárias e saltos temáticos.
-
-**Critérios de nota:**
-- 0–50: incoerência e quebras de encadeamento frequentes.
-- 51–100: transições fracas e uso repetitivo de conectivos.
-- 101–150: coesão razoável, com pequenas falhas.
-- 151–200: coesão fluida e variada, transições naturais.
-
-**Exemplo de justificativa esperada:**
-> “Há repetição excessiva do conectivo ‘assim’. Apesar disso, as ideias mantêm sequência lógica aceitável.”
-
----
-
-### 🌍 Competência 5 — Proposta de intervenção e respeito aos direitos humanos
-Avalie:
-- Existência de **proposta de intervenção completa**, contendo:
-  - **Agente** (quem faz);
-  - **Ação** (o que será feito);
-  - **Meio/modo** (como será feito);
-  - **Finalidade** (para quê);
-  - **Detalhamento mínimo de viabilidade** (exequibilidade).
-- Verifique se a proposta respeita os direitos humanos e o tema central.
-
-**Critérios de nota:**
-- 0–50: ausência ou proposta inaceitável (contrária a direitos humanos).
-- 51–100: proposta vaga, sem detalhamento.
-- 101–150: proposta presente, mas incompleta.
-- 151–200: proposta detalhada, viável e articulada.
-
-**Exemplo de justificativa esperada:**
-> “A proposta menciona que ‘o governo deveria investir mais’, mas não especifica agente, ação e meios. Isso reduz a clareza da intervenção.”
-
----
-
-📈 FINALIZAÇÃO:
-Depois de avaliar todas as competências:
-
-1. Some as notas (máx. 1000 pontos);
-2. Informe a **Nota Total: XXXX / 1000**;
-3. Redija um **Resumo Geral da Redação (3–5 linhas)**, abordando o desempenho global;
-4. Liste **3 prioridades de revisão**, numeradas de 1 a 3, que indiquem onde o autor deve concentrar seus esforços de melhoria.
-
----
-
-Responda com formatação clara e organizada, sem omitir nenhuma competência.
-
----
+FIM DO PROMPT.
 `
   return imagem ? base : `${base}\n\nRedação:\n${redacao}`
 }
