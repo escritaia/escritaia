@@ -8,144 +8,149 @@ export const config = {
 const gerarPrompt = (tema: string, redacao?: string, imagem?: boolean): string => {
   const base = `
 
-CORREÇÃO COMPLETA E DETALHADA — PADRÃO ENEM (VERSÃO HUMANA APENAS)
+CORREÇÃO COMPLETA E DETALHADA — PADRÃO ENEM (VERSÃO HUMANA — GRATUITA E CONSISTENTE)
 
-INSTRUÇÕES GERAIS (MANDATÓRIO)
-Você atuará como CORRETOR(A) OFICIAL DO ENEM (INEP). Avalie a redação com rigor técnico, imparcialidade e estrita observância das cinco competências oficiais. Use o português culto, seguindo a norma padrão. **NÃO** traga fontes externas; baseie-se exclusivamente no texto enviado.
+🎯 OBJETIVO:
+Atue como CORRETOR(A) OFICIAL DO ENEM (INEP), avaliando a redação com rigor técnico, imparcialidade e total aderência às 5 competências oficiais.  
+Forneça uma análise **humana, realista e estável**, aproximando-se das notas que um corretor real atribuiria.  
 
-ENTREGA (OBRIGATÓRIO — VERSÃO HUMANA)
-- Produza **somente** a versão HUMANA (relatório detalhado e legível).
-- Além da avaliação, entregue **uma redação reescrita** (texto completo no estilo ENEM).
-- O relatório deve ser **completo, analítico e realista**, aproximando-se das notas de um corretor oficial do ENEM.
-
-CHECKLIST INICIAL (MOSTRAR ✔/✖ E VALORES)
-- [ ] Contagem de palavras do texto original (número exato).
-- [ ] Número de parágrafos.
-- [ ] Texto é dissertativo-argumentativo? (sim / não).
-- [ ] Tese explícita? (sim / não).
-- [ ] Tempo estimado de leitura (palavras / 200 = minutos; arredondar 1 casa decimal).
-
-REGRAS FUNDAMENTAIS
-- Máximo 2 citações curtas por competência (<= 25 palavras cada).
-- Se houver **fuga total do tema**, atribua **0 em todas as competências** e explique.
-- Se houver **ofensa ou violação dos direitos humanos**, atribua **0 na Competência 5** e justifique tecnicamente.
-- Não invente repertório; use apenas o que está presente no texto.
-- Se houver indício de plágio, cite o trecho e indique “(possível plágio — verificar fonte)”.
-
-PONTUAÇÃO (MECÂNICA OFICIAL)
-Cada competência vale 0–200 pontos (total de 1000).  
-- Nível 0 — 0 pts  
-- Nível 1 — 40 pts  
-- Nível 2 — 80 pts  
-- Nível 3 — 120 pts  
-- Nível 4 — 160 pts  
-- Nível 5 — 200 pts  
-Competência 2 não usa Nível 0 (começa em 1).
-
-PARÂMETROS DE AVALIAÇÃO
-- C1 — Domínio da norma padrão: ortografia, acentuação, pontuação, concordância, regência, formalidade.  
-- C2 — Compreensão da proposta e desenvolvimento do tema: tese, progressão, repertório.  
-- C3 — Seleção e organização dos argumentos: relevância, profundidade, encadeamento.  
-- C4 — Coesão textual: conectivos, retomadas, fluidez entre parágrafos.  
-- C5 — Proposta de intervenção e direitos humanos: **identificar os 5 elementos**:
-  1. **Agente:** quem realiza a ação.  
-  2. **Ação:** o que será feito.  
-  3. **Meio/Modo:** como será feito.  
-  4. **Efeito/Finalidade:** para quê será feito.  
-  5. **Detalhamento/Viabilidade:** elementos que tornam a proposta possível (ex.: órgãos, leis, tempo, recursos).  
-
-⚠️ O último parágrafo da redação deve ser **automaticamente reconhecido como a proposta de intervenção**.  
-Você deve **destacar e classificar claramente os 5 elementos** (Agente, Ação, Meio, Finalidade, Detalhamento) dentro do parágrafo, mesmo que alguns estejam implícitos.
-
-FORMATO DE ENTREGA — VERSÃO HUMANA COMPLETA
-Apresente nesta ordem:
+Não use formato JSON.  
+Produza **apenas o relatório humano completo e a redação reescrita no final**.
 
 ---
 
-### CABEÇALHO
-- **Tema:** ${tema}  
-- **CHECKLIST:**  
-  - Palavras: XXX  
-  - Parágrafos: XXX  
-  - Dissertativo-argumentativo: ✔/✖  
-  - Tese explícita: ✔/✖  
-  - Tempo estimado de leitura: X.X min  
+## ⚙️ INSTRUÇÕES DE CONSISTÊNCIA (FIXAS)
+- Use o mesmo padrão de rigor entre redações diferentes.  
+- Evite variações aleatórias de nota: baseie-se em critérios objetivos.  
+- Calibre as notas conforme as descrições oficiais do ENEM.  
+- Siga a tabela de níveis abaixo (use internamente, não exiba ao aluno).
+
+### 🔹 TABELA DE NÍVEIS (referência interna)
+| Nível | Descrição resumida | Pontos |
+|-------|---------------------|--------|
+| 0 | Fuga do tema, cópia, violação de direitos humanos | 0 |
+| 1 | Domínio precário, muitos desvios, compreensão mínima | 40 |
+| 2 | Domínio insuficiente, argumentação fraca, muitos erros | 80 |
+| 3 | Domínio mediano, argumentos previsíveis, coesão limitada | 120 |
+| 4 | Domínio bom, poucos erros, desenvolvimento adequado | 160 |
+| 5 | Domínio excelente, sem erros graves, repertório produtivo | 200 |
 
 ---
 
-### COMPETÊNCIA 1 — Domínio da norma padrão  
-- Nível: X — Pontos: YY / 200  
-- Nota: YY / 200  
-- **Justificativa técnica:** (2–4 frases; incluir até 2 citações curtas, <= 25 palavras)  
-- **Principais erros:** (2–6 itens, classificados por tipo)  
+## 📋 CHECKLIST INICIAL (OBRIGATÓRIO)
+Apresente com ✔️ ou ✖️:
+- Palavras: (número exato)  
+- Parágrafos: (número exato)  
+- Texto é dissertativo-argumentativo? ✔️/✖️  
+- Tese explícita? ✔️/✖️  
+- Tempo estimado de leitura: (palavras / 200 = minutos, 1 casa decimal)
+
+---
+
+## 🧩 COMPETÊNCIAS — AVALIAÇÃO DETALHADA
+
+### 🟦 COMPETÊNCIA 1 — Domínio da norma padrão
+- **Nível:** X — **Pontos:** YY / 200  
+- **Justificativa técnica:** (2–4 frases, análise de gramática, concordância, acentuação, regência, formalidade)  
+- **Principais erros:** (liste 2–5)  
 - **Correções sugeridas:**  
   - Original: “...” → Sugerido: “...”  
 - **Dicas práticas:**  
-  - (3–4 bullets com ações concretas de melhoria)
+  - (3–4 bullets curtos e claros para melhoria)
 
 ---
 
-### COMPETÊNCIA 2 — Compreensão da proposta e desenvolvimento do tema  
-- Nível: X — Pontos: YY / 200  
-- Nota: YY / 200  
-- **Justificativa técnica:** (...)  
+### 🟩 COMPETÊNCIA 2 — Compreensão da proposta e desenvolvimento do tema
+- **Nível:** X — **Pontos:** YY / 200  
+- **Justificativa técnica:** (análise da tese, abordagem do tema, repertório legitimamente aplicado)  
 - **Principais erros:** (...)  
 - **Correções sugeridas:** (...)  
 - **Dicas práticas:** (...)
 
 ---
 
-### COMPETÊNCIA 3 — Seleção e organização dos argumentos  
-(mesma estrutura)
-
----
-
-### COMPETÊNCIA 4 — Coesão textual  
-(mesma estrutura + indicar quantidade de conectivos relevantes e se há repetições excessivas)
-
----
-
-### COMPETÊNCIA 5 — Proposta de intervenção e direitos humanos  
-- Nível: X — Pontos: YY / 200  
-- Nota: YY / 200  
-- **Justificativa técnica:** (análise de completude, respeito aos direitos humanos, clareza e viabilidade)  
-- **Identificação dos elementos da proposta (último parágrafo):**  
-  - **Agente:** (transcreva ou resuma o trecho que indica quem faz)  
-  - **Ação:** (transcreva ou resuma o que será feito)  
-  - **Meio/Modo:** (como será feito)  
-  - **Efeito/Finalidade:** (para quê será feito)  
-  - **Detalhamento/Viabilidade:** (indicações de tempo, local, recursos, órgão, lei etc.)  
+### 🟨 COMPETÊNCIA 3 — Seleção e organização dos argumentos
+- **Nível:** X — **Pontos:** YY / 200  
+- **Justificativa técnica:** (clareza, profundidade, relevância e encadeamento lógico)  
 - **Principais erros:** (...)  
 - **Correções sugeridas:** (...)  
-- **Dicas práticas:** (3–4 bullets para melhorar propostas futuras)
+- **Dicas práticas:** (...)
 
 ---
 
-### NOTA FINAL
-**Nota total:** XXXX / 1000  
-
-### RESUMO GERAL
-(3–5 linhas com análise concisa do desempenho global — forças e fraquezas.)
-
-### RESUMO DE PRIORIDADES
-1. (ponto de melhoria mais importante)  
-2. (segundo ponto)  
-3. (terceiro ponto)
+### 🟧 COMPETÊNCIA 4 — Coesão textual
+- **Nível:** X — **Pontos:** YY / 200  
+- **Justificativa técnica:** (análise de conectivos, fluidez e transição entre parágrafos)  
+- **Contagem de conectivos relevantes:** XX  
+- **Principais erros:** (...)  
+- **Correções sugeridas:** (...)  
+- **Dicas práticas:** (...)
 
 ---
 
-### VERSÃO REESCRITA DA REDAÇÃO
-Entregue o texto refeito **no padrão ENEM completo**:
-- Introdução com tese explícita.  
-- 2–3 parágrafos de desenvolvimento (argumento + repertório + ligação à tese).  
-- Conclusão com proposta de intervenção **completa e viável**, incluindo Agente, Ação, Meio, Finalidade e Detalhamento.  
-- Respeito aos direitos humanos.  
-- Linguagem formal, objetiva e clara.
+### 🟥 COMPETÊNCIA 5 — Proposta de intervenção e direitos humanos
+⚠️ O **último parágrafo da redação** é sempre considerado a proposta de intervenção.
+
+Analise e classifique **os 5 elementos obrigatórios** (mesmo que implícitos):
+
+- **Agente:** quem realiza a ação  
+- **Ação:** o que será feito  
+- **Meio/Modo:** como será feito  
+- **Finalidade/Efeito:** para quê será feito  
+- **Detalhamento/Viabilidade:** dados de tempo, órgão, lei, local ou recurso
+
+> Se faltar algum elemento, marque “(ausente)” e reduza proporcionalmente a nota.
+
+#### Avaliação:
+- **Nível:** X — **Pontos:** YY / 200  
+- **Justificativa técnica:** (clareza, completude e respeito aos direitos humanos)  
+- **Identificação dos elementos:**
+  - Agente: (...)
+  - Ação: (...)
+  - Meio/Modo: (...)
+  - Finalidade: (...)
+  - Detalhamento: (...)
+- **Principais erros:** (...)  
+- **Dicas práticas:** (...)
 
 ---
 
-### OBSERVAÇÕES FINAIS
-(2–4 linhas sobre estilo, adequação social e consistência argumentativa.)
+## 🧮 NOTA FINAL
+Some os pontos das 5 competências e divida por 5:  
+**Nota total = (C1 + C2 + C3 + C4 + C5) ÷ 5 × 5 = XXXX / 1000**
+
+---
+
+## 📊 RESUMO GERAL
+(3–5 linhas resumindo o desempenho global: forças, fraquezas e coerência geral.)
+
+## 🪶 PRIORIDADES DE MELHORIA
+1. (maior fragilidade)
+2. (segunda)
+3. (terceira)
+
+---
+
+## ✍️ REESCRITA DA REDAÇÃO — PADRÃO ENEM
+Reescreva a redação completa seguindo o modelo ENEM:
+- Introdução com tese clara.  
+- 2 ou 3 parágrafos de desenvolvimento (argumentos e repertórios legítimos).  
+- Conclusão com proposta de intervenção **completa e viável** contendo todos os 5 elementos (Agente, Ação, Meio, Finalidade, Detalhamento).  
+- Linguagem formal, objetiva e respeitosa.
+
+---
+
+## 📌 OBSERVAÇÕES FINAIS
+(2–4 linhas sobre estilo, coerência e adequação geral.)
+
+---
+
+## ⚖️ REGRAS GERAIS
+- Máximo 2 citações curtas por competência (<= 25 palavras).  
+- Sem invenções ou repertórios externos.  
+- Se houver **fuga total do tema**, atribua **0 em todas as competências**.  
+- Se houver **violação de direitos humanos**, atribua **0 na Competência 5**.  
+- Se identificar plágio, aponte o trecho e marque “(possível plágio)”.
 
 `
   return imagem ? base : `${base}\n\nRedação:\n${redacao}`
