@@ -259,7 +259,7 @@ a {
 @media (min-width: 820px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* fallback global caso o <Link> não aplique corretamente a classe */
-:global(.footer a) {
+.footer a {
   background: transparent !important;
   color: #fff !important;
   text-decoration: none !important;
@@ -269,7 +269,7 @@ a {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  :global(*) {
+  * {
     animation: none !important;
     transition: none !important;
   }

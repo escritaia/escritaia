@@ -1,0 +1,112 @@
+/* Sobre.module.css — usa variáveis globais definidas em globals.css */
+
+.page {
+  background: var(--bg);
+  color: #fff;
+  min-height: 100vh;
+  padding: 2.5rem 1rem;
+  font-family: var(--font-sans);
+}
+
+.container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--page-padding-desktop);
+}
+
+.title {
+  color: var(--primary);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  margin-bottom: 1.5rem;
+}
+
+.paragraph {
+  color: #e9eef1;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Equipe */
+.teamSection {
+  margin-top: 1.5rem;
+}
+
+.teamTitle {
+  color: var(--primary);
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Responsividade: colunas em telas menores */
+@media (max-width: 1100px) {
+  .teamGrid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 720px) {
+  .teamGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 420px) {
+  .teamGrid { grid-template-columns: 1fr; }
+}
+
+.member {
+  text-align: center;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  padding: 0.9rem;
+  border-radius: calc(var(--radius) - 2px);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.member:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.photoWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+}
+
+.photo {
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  object-fit: cover;
+  width: 96px;
+  height: 96px;
+}
+
+/* Nome abaixo da foto */
+.name {
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+/* Rodapé da página */
+.footer {
+  margin-top: 1.75rem;
+  text-align: center;
+  color: var(--muted);
+}

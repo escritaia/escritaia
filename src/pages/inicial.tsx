@@ -171,13 +171,16 @@ export default function HomePage() {
 
         {/* FOOTER */}
         <footer className={styles.footer}>
-          <Link href="/manutencao" className={styles.footerLink}>
+          <Link href="/sobre" className={styles.footerLink}>
             Sobre Nós
           </Link>
-          {' | '}
-          <Link href="/manutencao" className={styles.footerLink}>
-            Fale Conosco
-          </Link>
+        <Link
+          href="mailto:escritaia@gmail.com?subject=Contato%20EscritaIA&body=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20projeto."
+          className={styles.btn}
+          aria-label="Enviar email para EscritaIA com assunto"
+        >
+          Fale Conosco
+        </Link>
         </footer>
       </div>
     </>
