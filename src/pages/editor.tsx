@@ -208,7 +208,7 @@ export default function Editor({ initialTema = '', initialRedacao = '' }: Props)
         </div>
 
         <footer className={styles.footer}>
-          <Link href="/manutencao" className={styles.footerLink}>Sobre</Link>
+          <Link href="/sobre" className={styles.footerLink}>Sobre</Link>
           <Link href="/manutencao" className={styles.footerLink}>Privacidade</Link>
         </footer>
       </div>
