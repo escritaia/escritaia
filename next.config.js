@@ -4,6 +4,7 @@ console.log('LOADING next.config.js — exportGlobals ENABLED')
 const nextConfig = {
   images: { unoptimized: true },
   eslint: { ignoreDuringBuilds: true },
+  turbopack: {},
   webpack(config) {
     try {
       const rules = config.module?.rules || []
@@ -34,4 +35,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
